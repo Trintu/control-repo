@@ -4,9 +4,11 @@
 #
 # @example
 #   include jenkinstest::java_base
-class jenkinstest::java_base {
+class jenkinstest::java_base (
+  String $version
+){
   class{ 'java':
-    version      => '8',
+    version      => $version,
     distribution => 'jre',
   }
 }

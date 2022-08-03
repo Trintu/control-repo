@@ -6,6 +6,9 @@
 #   include jenkinstest::jenkinst
 
 class jenkinstest::jenkinst {
+  class { 'jenkinstest::java_base':
+    version => '8',
+  }
   exec { 'get-jenkins-key':
     command  => '/usr/bin/wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
   }
