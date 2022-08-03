@@ -25,6 +25,10 @@ File { backup => false }
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
 node default {
-  include jenkinstest::java_base
+  class { 'java':
+          distribution => 'jre',
+          version      => '8',  
+  }
+
   include jenkinstest::jenkinst
 }
