@@ -10,7 +10,7 @@ class jenkinstest::jenkinst {
     version => '8',
   }
   exec { 'get-jenkins-key':
-    command  => '/usr/bin/wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
+    command  => '/usr/bin/wget -qq -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
   }
   exec { 'get-sources-list':
     command  => '/usr/bin/sudo sh -c \'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list\'',
