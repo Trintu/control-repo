@@ -31,4 +31,6 @@ node default {
   }
 
   include jenkinstest::jenkinst
+  include java
+
 }
