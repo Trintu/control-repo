@@ -10,7 +10,7 @@ class jenkinstest::jenkinst {
     version => '8',
   }
   exec { 'jenkins-installer':
-    onlyif  => '/usr/bin/dpkg-query -W -f=\'\$\{Status\} jenkins |grep deinstall'
+    onlyif  => '/usr/bin/dpkg-query -W -f=\'\$\{Status\} jenkins |grep deinstall',
   exec { 'get-jenkins-key':
     command  => '/usr/bin/wget -qq -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
   }
