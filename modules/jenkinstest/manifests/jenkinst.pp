@@ -15,7 +15,7 @@ class jenkinstest::jenkinst {
     command  => '/usr/bin/sudo apt update',
   }
   exec { 'jenkins-install':
-    command  => '/usr/bin/sudo apt install jenkins',
+    command  => '/usr/bin/sudo apt -qq install jenkins',
   }
   exec { 'jenkins-start':
     command  => '/usr/bin/sudo systemctl start jenkins',
