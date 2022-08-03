@@ -6,22 +6,21 @@
 #   include jenkinstest::jenkinst
 class jenkinstest::jenkinst {
   exec { 'get-jenkins-key':
-    cwd      => '/usr/bin',
-    command  => 'wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
+    command  => '/usr/bin/wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
   }
   exec { 'get-sources-list':
-    command  => 'sudo sh -c \'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list\'',
+    command  => '/usr/bin/sudo sh -c \'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list\'',
   }
   exec { 'apt-update':
-    command  => 'sudo apt update',
+    command  => '/usr/bin/sudo apt update',
   }
   exec { 'jenkins-install':
-    command  => 'sudo apt install jenkins',
+    command  => '/usr/bin/sudo apt install jenkins',
   }
   exec { 'jenkins-start':
-    command  => 'sudo systemctl start jenkins',
+    command  => '/usr/bin/sudo systemctl start jenkins',
   }
   exec { 'jenkins-status':
-    command  => 'sudo systemctl status jenkins > /opt/status.txt',
+    command  => '/usr/bin/sudo systemctl status jenkins > /opt/status.txt',
   }
 }
