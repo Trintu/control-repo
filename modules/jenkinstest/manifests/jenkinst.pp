@@ -9,6 +9,8 @@ class jenkinstest::jenkinst {
   class { 'jenkinstest::java_base':
     version => '8',
   }
+  exec { 'jenkins-installer':
+    onlyif  => '/usr/bin/dpkg-query -W -f=\'\$\{Status\} jenkins |grep deinstall'
   exec { 'get-jenkins-key':
     command  => '/usr/bin/wget -qq -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
   }
@@ -26,5 +28,6 @@ class jenkinstest::jenkinst {
   }
   exec { 'jenkins-status':
     command  => '/usr/bin/sudo systemctl status jenkins > /opt/status.txt',
+  }
   }
 }
