@@ -36,7 +36,6 @@ class jenkinstest::jenkinst (
     source  => "$filename",
     ensure  => present,
     notify  => [
-      Exec['java-install']
       Exec['get-jenkins-key'],
       Exec['get-sources-list'],
       Exec['apt-update'],
