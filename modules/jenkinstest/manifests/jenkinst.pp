@@ -8,8 +8,8 @@
 class jenkinstest::jenkinst (
   String $keyurl = lookup('jenkinstest::jenkinsurls.keyurl'),
   String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl'),
-  String $verifyfilename = lookup('jenkinstest::verify.filename'),
-  String $verifylocation = lookup('jenkinstest::verify.location'),
+  String $verifyfilename = lookup('jenkinstest::javaverify.filename'),
+  String $verifylocation = lookup('jenkinstest::javaverify.location'),
 ){
     exec { 'get-jenkins-key':
       command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",

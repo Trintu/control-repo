@@ -13,9 +13,6 @@ class jenkinstest::java_base (
   file { "$jvmhome":
     ensure => directory,
     }
-  file { "$verifyhome":
-    ensure => directory,
-    }
   exec { 'java-install':
       command     => '/usr/bin/sudo apt -y install openjdk-8-jre',
       refreshonly => true,
