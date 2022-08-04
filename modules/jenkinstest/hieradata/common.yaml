@@ -10,7 +10,6 @@ jenkinstest::jenkinsverify:
 jenkinstest::javahome:
   filename: puppet:///modules/jenkinstest/set_java_home.sh
   location: /etc/profile.d/set_java_home.sh
-  jvmhome: /usr/lib/jvm/java-8-openjdk-amd64/docs
 
 jenkinstest::javaverify:
   location: /usr/lib/jvm/java-8-openjdk-amd64/docs/JAVA_HOME

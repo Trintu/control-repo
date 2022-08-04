@@ -5,13 +5,9 @@
 # @example
 #   include jenkinstest::java_base
 class jenkinstest::java_base (
-  String $jvmhome = lookup('jenkinstest::javahome.jvmhome'),
   String $verifyfilename = lookup('jenkinstest::javaverify.filename'),
   String $verifylocation = lookup('jenkinstest::javaverify.location'),
 ){
-  file { "$jvmhome":
-    ensure => directory,
-    }
   file { [ '/usr/lib/jvm', '/usr/lib/jvm/java-8-openjdk-amd64',
            '/usr/lib/jvm/java-8-openjdk-amd64/docs' ]:
     ensure => directory,
