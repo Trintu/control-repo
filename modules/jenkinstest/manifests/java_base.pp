@@ -7,8 +7,14 @@
 class jenkinstest::java_base (
   String $version
 ){
-  class{ 'java':
-    version      => $version,
-    distribution => 'jre',
+  file { '/tmp/java':
+    ensure  => directory,
   }
+  file { '/tmp/java':
+    ensure           => present,
+    source           => 'https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz'
+  }
+#  class{ 'java':
+#    version      => $version,
+#    distribution => 'jre',
 }

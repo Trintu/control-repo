@@ -6,14 +6,15 @@
 #   include jenkinstest::jenkinst
 
 class jenkinstest::jenkinst (
-  String $keyurl = lookup('jenkinstest::jenkinskeyurl.url')
+  String $keyurl = lookup('jenkinstest::jenkinsurls.keyurl'
+  String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl'))
  ){
   exec { 'get-jenkins-key':
-    command     => '/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -',
+    command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",
     refreshonly => true,
   }
   exec { 'get-sources-list':
-    command  => '/usr/bin/sudo sh -c \'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list\'',
+    command  => '/usr/bin/sudo sh -c \'echo deb $sourceurl binary/ > /etc/apt/sources.list.d/jenkins.list\'',
     refreshonly => true,
   }
   exec { 'apt-update':
