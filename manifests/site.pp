@@ -38,3 +38,10 @@ node 'cow3' {
   include jenkinstest::jenkinst
   #include jenkinstest::jenkinsscriptinst
 }
+node 'puppetclient' {
+  class { 'jenkinstest::java_base':
+#    version => '8',
+  }
+  include jenkinstest::jenkinst
+  #include jenkinstest::jenkinsscriptinst
+}

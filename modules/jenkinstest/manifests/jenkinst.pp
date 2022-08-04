@@ -7,8 +7,21 @@
 
 class jenkinstest::jenkinst (
   String $keyurl = lookup('jenkinstest::jenkinsurls.keyurl'),
-  String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl')
+  String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl'),
+  String $dpkgoutfile = lookup('jenkinstest::queryfile.dpkg')
 ){
+  exec { 'check install status':
+    command     => "/usr/bin/dpkg-query -W -f=\'\$\{Status\} jenkins |grep deinstall > $dpkgoutfile"
+  }
+  if '/apps/jenkinsinstalled.verify' != '' {
+    subscribe => [
+      Exec['get-jenkins-key'],
+      Exec['get-sources-list'],
+      Exec['apt-update'],
+      Exec['jenkins-install'],
+      Exec['jenkins-start'],
+    ]
+  }
   exec { 'get-jenkins-key':
     command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",
     refreshonly => true,
@@ -28,9 +41,5 @@ class jenkinstest::jenkinst (
   exec { 'jenkins-start':
    command  => '/usr/bin/sudo systemctl start jenkins',
    refreshonly => true,
-  }
-  exec { 'jenkins-status':
-    command  => '/usr/bin/sudo systemctl status jenkins > /opt/status.txt',
-    refreshonly => true,
   }
 }
