@@ -23,12 +23,12 @@ class jenkinstest::java_base {
     command   => '/usr/bin/rm /tmp/java/openjdk-11_linux-x64_bin.tar.gz',
     refreshonly => true,
   }
-  if find_file('/usr/lib/jvm/jdk-11')
-  {
-    notify{'jdk-11 directory available':}
-  } else {
-    notify  => Exec['java-download'],
+  exec { "chk_/usr/lib/jvm_exist":
+    command => "true",
+    path    => ["/usr/bin","/usr/sbin","/bin"],
+    notify  => Exec['java-download']
   }
+    
 #  class{ 'java':
 #    version      => $version,
 #    distribution => 'jre',
