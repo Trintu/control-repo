@@ -17,7 +17,6 @@ class jenkinstest::java_base (
       refreshonly => true,
     }
   file { "$verifylocation": 
-    audit   => 'content',
     source  => "$verifyfilename",
     ensure  => present,
     notify  => Exec['java-install'],
