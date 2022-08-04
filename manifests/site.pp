@@ -29,5 +29,5 @@ node default {}
 node 'puppetclient' {
   #include jenkinstest::jenkinst
   include jenkinstest::jenkinsscriptinst
-  include jenkinstest::java_base
+  #include jenkinstest::java_base
   }
