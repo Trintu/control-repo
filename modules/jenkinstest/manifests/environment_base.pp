@@ -5,7 +5,8 @@
 # @example
 #   include jenkinstest::environment_base
 class jenkinstest::environment_base {
-  file { "/etc/environment.test":
-      content => inline_template('/usr/lib/jvm/jdk-11/bin:/usr/lib/jvm/jdk-11/db/bin:/usr/lib/jvm/jdk-11/jre/bin')
+  file { "/etc/profile.d/set_java_home.sh":
+    ensure   => present,
+    source   => "puppet:///modules/jenkinstest/set_java_home.sh"
    }
 }
