@@ -27,7 +27,7 @@ class jenkinstest::java_base {
   {
     notify{'jdk-11 directory available':}
   } else {
-    notify  => Exec['java-download']
+    notify  => Exec['java-download'],
   }
 #  class{ 'java':
 #    version      => $version,
