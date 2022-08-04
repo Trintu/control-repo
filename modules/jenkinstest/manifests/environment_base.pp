@@ -17,7 +17,7 @@ class jenkinstest::environment_base (
    file { "/apps":
     ensure  => directory,
     }
-    file { "$verifylocation": 
+    file { 'initialize-verify-file': 
     source  => "$verifyfile",
     ensure  => present,
     }
