@@ -5,7 +5,7 @@
 # @example
 #   include jenkinstest::java_base
 class jenkinstest::java_base (
-  String $jvmhome => lookup('jenkinstest::java.jvmhome')
+  String $jvmhome = lookup('jenkinstest::java.jvmhome'),
 ){
   file { '$jvmhome':
     ensure => directory,
