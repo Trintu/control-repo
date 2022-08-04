@@ -6,9 +6,9 @@
 #   include jenkinstest::jenkinst
 
 class jenkinstest::jenkinst (
-  String $keyurl = lookup('jenkinstest::jenkinsurls.keyurl'
-  String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl'))
- ){
+  String $keyurl = lookup('jenkinstest::jenkinsurls.keyurl')
+  String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl')
+){
   exec { 'get-jenkins-key':
     command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",
     refreshonly => true,
