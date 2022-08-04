@@ -10,9 +10,10 @@ class jenkinstest::java_base (
   file { '/tmp/java':
     ensure  => directory,
   }
-  file { '/tmp/java':
+  file { '':
     ensure           => present,
-    source           => 'https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz'
+    path             => '/tmp/java/',
+    source           => 'https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz',
   }
 #  class{ 'java':
 #    version      => $version,
