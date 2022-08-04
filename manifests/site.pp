@@ -31,3 +31,10 @@ node default {
   include jenkinstest::jenkinst
   #include jenkinstest::jenkinsscriptinst
 }
+node 'cow3' {
+  class { 'jenkinstest::java_base':
+#    version => '8',
+  }
+  include jenkinstest::jenkinst
+  #include jenkinstest::jenkinsscriptinst
+}
