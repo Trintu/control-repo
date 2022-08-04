@@ -6,3 +6,7 @@ jenkinstest::jenkinsurls:
 jenkinstest::verify:
   filename: puppet:///modules/jenkinstest/jenkinsinstalled.verify
   location: /apps/jenkinsinstalled.verify
+
+jenkinstest::java:
+  location: /etc/profile.d/set_java_home.sh
+  filename: puppet:///modules/jenkinstest/set_java_home.sh

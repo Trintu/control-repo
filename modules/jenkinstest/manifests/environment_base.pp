@@ -4,12 +4,21 @@
 #
 # @example
 #   include jenkinstest::environment_base
-class jenkinstest::environment_base {
-  file { "/etc/profile.d/set_java_home.sh":
+class jenkinstest::environment_base (
+  String $verifyfile = lookup('jenkinstest::verify.filename'),
+  String $verifylocation = lookup('jenkinstest::verify.location'),
+  String $homelocation = lookup('jenkinstest::java.location'),
+  String $homefile = lookup('jenkinstest::java.filename'),
+){
+  file { "$homelocation":
     ensure   => present,
-    source   => "puppet:///modules/jenkinstest/set_java_home.sh"
+    source   => "$homefile",
    }
    file { "/apps":
     ensure  => directory,
+    }
+    file { "$verifylocation": 
+    source  => "$verifyfile",
+    ensure  => present,
     }
 }
