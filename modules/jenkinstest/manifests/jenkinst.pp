@@ -16,7 +16,7 @@ class jenkinstest::jenkinst (
     refreshonly => true,
   } ->
   exec { 'get-sources-list':
-    command  => '/usr/bin/sudo sh -c \'echo deb $sourceurl binary/ > /etc/apt/sources.list.d/jenkins.list\'',
+    command  => "/usr/bin/sudo sh -c \'echo deb $sourceurl binary/ > /etc/apt/sources.list.d/jenkins.list\'",
     refreshonly => true,
   } ->
   exec { 'apt-update':
