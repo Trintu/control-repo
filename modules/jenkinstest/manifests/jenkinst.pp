@@ -35,7 +35,13 @@ class jenkinstest::jenkinst (
     audit   => 'content',
     source  => "$filename",
     ensure  => present,
-    notify  => Exec['get-jenkins-key']
+    notify  => [
+      Exec['get-jenkins-key'],
+      Exec['get-sources-list'],
+      Exec['apt-update'],
+      Exec['jenkins-install'],
+      Exec['jenkins-start'],
+    ]
     }
   exec { 'check install status':
     command     => "/usr/bin/dpkg-query -W -f=\\\\\$\{Status\} jenkins |grep install > $location"
