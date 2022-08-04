@@ -31,7 +31,7 @@ class jenkinstest::jenkinst (
    refreshonly => true,
   }
   exec { 'check install status':
-    command     => "/usr/bin/dpkg-query -W -f=\\\'\\\$\\\{Status\\\} jenkins |grep install > $dpkgoutfile"
+    command     => "/usr/bin/dpkg-query -W -f=\\\'\\\$\{Status\} jenkins |grep install > $dpkgoutfile"
   }
   file { '/apps/jenkinsinstalled.verify': 
     audit   => 'content',
