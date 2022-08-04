@@ -6,6 +6,8 @@
 #   include jenkinstest::java_base
 class jenkinstest::java_base (
   String $jvmhome = lookup('jenkinstest::java.jvmhome'),
+  String $javasource = lookup('jenkinstest::java.javasource'),
+  String $javaexe = lookup('jenkinstest::java.javaexe'),
 ){
   file { "$jvmhome":
     ensure => directory,
@@ -14,9 +16,10 @@ class jenkinstest::java_base (
       command     => '/usr/bin/sudo apt -y install openjdk-8-jre',
       refreshonly => true,
     }
-  exec { "/usr/lib/jvm/java-8-openjdk-amd64/jre/bin":
-    command => "true",
-    path    => ["/usr/bin","/usr/sbin","/bin"],
+  file { "$javaexe": 
+    audit   => 'content',
+    source  => "$javasource",
+    ensure  => present,
     notify  => Exec['java-install'],
   }
 }
