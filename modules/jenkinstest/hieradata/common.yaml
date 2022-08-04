@@ -7,9 +7,11 @@ jenkinstest::verify:
   filename: puppet:///modules/jenkinstest/jenkinsinstalled.verify
   location: /apps/jenkinsinstalled.verify
 
-jenkinstest::java:
-  location: /etc/profile.d/set_java_home.sh
+jenkinstest::javahome:
   filename: puppet:///modules/jenkinstest/set_java_home.sh
+  location: /etc/profile.d/set_java_home.sh
   jvmhome: /usr/lib/jvm
-  javaexe: /usr/lib/jvm/java-8-openjdk-amd64/docs/JAVA_HOME
-  javasource: puppet:///modules/jenkinstest/JAVA_HOME
+
+jenkinstest::javaverify:
+  location: /usr/lib/jvm/java-8-openjdk-amd64/docs/JAVA_HOME
+  filename: puppet:///modules/jenkinstest/JAVA_HOME

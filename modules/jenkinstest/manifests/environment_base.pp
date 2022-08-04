@@ -7,8 +7,8 @@
 class jenkinstest::environment_base (
   String $verifyfile = lookup('jenkinstest::verify.filename'),
   String $verifylocation = lookup('jenkinstest::verify.location'),
-  String $homelocation = lookup('jenkinstest::java.location'),
-  String $homefile = lookup('jenkinstest::java.filename'),
+  String $homelocation = lookup('jenkinstest::javahome.location'),
+  String $homefile = lookup('jenkinstest::javahome.filename'),
 ){
   file { "$homelocation":
     ensure   => present,
