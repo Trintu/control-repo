@@ -5,3 +5,7 @@ jenkinstest::jenkinsurls:
 
 jenkinstest::queryfile:
   dpkg: /apps/jenkinsinstalled.verify
+
+jenkinstest::verify:
+  filename: puppet:///modules/jenkinstest/.jenkinsinstalled.verify
+  location: /apps/.jenkinsinstalled.verify

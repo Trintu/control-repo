@@ -9,6 +9,8 @@ class jenkinstest::jenkinst (
   String $keyurl = lookup('jenkinstest::jenkinsurls.keyurl'),
   String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl'),
   String $dpkgoutfile = lookup('jenkinstest::queryfile.dpkg')
+  String $filename = lookup('jenkinstest::verify.filename')
+  String $location = lookup('jenkinstest::verify.location')
 ){
   exec { 'get-jenkins-key':
     command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",
@@ -30,14 +32,13 @@ class jenkinstest::jenkinst (
    command  => '/usr/bin/sudo systemctl start jenkins',
    refreshonly => true,
   }
-  exec { 'check install status':
-    command     => "/usr/bin/dpkg-query -W -f=\\\\\$\{Status\} jenkins |grep install > $dpkgoutfile"
-  }
-  file { '/apps/jenkinsinstalled.verify': 
+  file { "$location": 
     audit   => 'content',
-    source  => "puppet:///modules/jenkinstest/.jenkinsinstalled.verify",
+    source  => "$filename",
     ensure  => present,
     notify  => Exec['get-jenkins-key']
-
+    }
+  exec { 'check install status':
+    command     => "/usr/bin/dpkg-query -W -f=\\\\\$\{Status\} jenkins |grep install > $dpkgoutfile"
   }
 }
