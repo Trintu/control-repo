@@ -32,7 +32,7 @@ class jenkinstest::jenkinst (
    refreshonly => true,
   }
   file { "$location": 
-    audit   => 'content',
+    #audit   => 'content',
     source  => "$filename",
     ensure  => present,
     notify  => [
