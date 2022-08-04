@@ -38,6 +38,6 @@ class jenkinstest::jenkinst (
     notify  => Exec['get-jenkins-key']
     }
   exec { 'check install status':
-    command     => "/usr/bin/dpkg-query -W -f=\\\\\$\{Status\} jenkins |grep install > $filename"
+    command     => "/usr/bin/dpkg-query -W -f=\\\\\$\{Status\} jenkins |grep install > $location"
   }
 }
