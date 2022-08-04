@@ -36,12 +36,6 @@ class jenkinstest::jenkinst (
   file { '/apps/jenkinsinstalled.verify': 
     audit   => 'content',
     ensure  => present,
-    notify  => [
-      Exec['get-jenkins-key'],
-      Exec['get-sources-list'],
-      Exec['apt-update'],
-      Exec['jenkins-install'],
-      Exec['jenkins-start'],
-    ]
+    notify  => Exec['get-jenkins-key']
   }
 }
