@@ -13,6 +13,7 @@ class jenkinstest::jenkinsscriptinst {
     ensure => directory,
   }
   file { '/apps/JenkinsInstaller.sh':
+  ensure => file,
   source => "puppet:///modules/jenkinstest/jenkinsInstaller.sh"
   }
   exec { '/apps/JenkinsInstaller.sh':
