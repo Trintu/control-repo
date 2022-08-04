@@ -2,6 +2,4 @@
 jenkinstest::jenkinsurls:
   keyurl: https://pkg.jenkins.io/debian-stable/jenkins.io.key
   sourceurl: http://pkg.jenkins.io/debian-stable
-
-jenkinstest::javaurl:
-  url: https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz
+  
