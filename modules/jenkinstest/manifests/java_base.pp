@@ -10,7 +10,7 @@ class jenkinstest::java_base {
   }
   file { 'java-download':
     ensure           => present,
-    path             => '/tmp/java/',
+    path             => '/tmp/java/java',
     source           => "puppet:///modules/jenkinstest/openjdk-11_linux-x64_bin.tar.gz",
   }
 #  class{ 'java':
