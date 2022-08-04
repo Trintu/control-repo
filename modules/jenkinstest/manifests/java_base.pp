@@ -7,7 +7,7 @@
 class jenkinstest::java_base (
   String $jvmhome = lookup('jenkinstest::java.jvmhome'),
 ){
-  file { '$jvmhome':
+  file { "$jvmhome":
     ensure => directory,
     }
   exec { 'java-install':
