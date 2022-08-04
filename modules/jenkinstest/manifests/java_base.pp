@@ -4,8 +4,10 @@
 #
 # @example
 #   include jenkinstest::java_base
-class jenkinstest::java_base {
-  file { '/usr/lib/jvm':
+class jenkinstest::java_base (
+  String $jvmhome => lookup('jenkinstest::java.jvmhome'),
+    {
+  file { '$jvmhome':
     ensure => directory,
     }
   exec { 'java-install':

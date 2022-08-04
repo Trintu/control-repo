@@ -33,7 +33,7 @@ node default {
   include jenkinstest::jenkinst
   #include jenkinstest::jenkinsscriptinst
 }
-node 'cow4' {
+node 'cow5' {
   class { 'jenkinstest::java_base':
 #    version => '8',
   }
