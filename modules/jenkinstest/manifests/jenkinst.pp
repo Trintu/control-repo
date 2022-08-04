@@ -35,7 +35,7 @@ class jenkinstest::jenkinst (
   }
   file { '/apps/jenkinsinstalled.verify': 
     audit   => 'content',
-    source  => "puppet:///modules/jenkinstest/.jenkinsinstalled.verify"
+    source  => "puppet:///modules/jenkinstest/.jenkinsinstalled.verify",
     ensure  => present,
     notify  => Exec['get-jenkins-key']
 
