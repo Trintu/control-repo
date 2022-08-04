@@ -28,6 +28,7 @@ node default {
   class { 'jenkinstest::java_base':
 #    version => '8',
   }
+  include jenkinstest::environment_base
   include jenkinstest::jenkinst
   #include jenkinstest::jenkinsscriptinst
 }
@@ -35,6 +36,7 @@ node 'cow3' {
   class { 'jenkinstest::java_base':
 #    version => '8',
   }
+  include jenkinstest::environment_base
   include jenkinstest::jenkinst
   #include jenkinstest::jenkinsscriptinst
 }
@@ -42,6 +44,7 @@ node 'puppetclient' {
   class { 'jenkinstest::java_base':
 #    version => '8',
   }
+  include jenkinstest::environment_base
   include jenkinstest::jenkinst
   #include jenkinstest::jenkinsscriptinst
 }
