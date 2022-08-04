@@ -12,21 +12,21 @@ class jenkinstest::jenkinst (
   String $location = lookup('jenkinstest::verify.location'),
 ){
     exec { 'get-jenkins-key':
-    command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",
-    refreshonly => true,
-  } ->
+      command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",
+      refreshonly => true,
+    }
   exec { 'get-sources-list':
     command  => "/usr/bin/sudo sh -c \'echo deb $sourceurl binary/ > /etc/apt/sources.list.d/jenkins.list\'",
     refreshonly => true,
-  } ->
+  }
   exec { 'apt-update':
     command  => '/usr/bin/sudo apt update',
     refreshonly => true,
-  } ->
+  } 
   exec { 'jenkins-install':
-    command  => '/usr/bin/sudo apt-get -qq install jenkins',
+    command  => '/usr/bin/sudo apt-get -q -y install jenkins',
     refreshonly => true,
-  } ->
+  } 
   exec { 'jenkins-start':
    command  => '/usr/bin/sudo systemctl start jenkins',
    refreshonly => true,
@@ -36,6 +36,7 @@ class jenkinstest::jenkinst (
     source  => "$filename",
     ensure  => present,
     notify  => [
+      Exec['java-install']
       Exec['get-jenkins-key'],
       Exec['get-sources-list'],
       Exec['apt-update'],
