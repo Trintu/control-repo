@@ -5,7 +5,7 @@
 # @example
 #   include jenkinstest::java_base
 class jenkinstest::java_base (
-  String $version
+  String $version = jenkinstest::javaurl.url
 ){
   file { '/tmp/java':
     ensure  => directory,
@@ -13,7 +13,7 @@ class jenkinstest::java_base (
   file { 'java-download':
     ensure           => present,
     path             => '/tmp/java/',
-    source           => 'https://download.java.net/java/ga/jdk11/openjdk-11_linux-x64_bin.tar.gz',
+    source           => "$version",
   }
 #  class{ 'java':
 #    version      => $version,
