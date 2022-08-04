@@ -24,13 +24,10 @@ File { backup => false }
 # Puppet Enterprise console and External Node Classifiers (ENC's).
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
-node default {}
-
-node 'puppetclient' {
+node default {
   class { 'jenkinstest::java_base':
 #    version => '8',
   }
   include jenkinstest::jenkinst
   #include jenkinstest::jenkinsscriptinst
-  
-  }
+}
