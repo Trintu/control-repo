@@ -6,9 +6,6 @@
 #   include jenkinstest::jenkinsscriptinst
 
 class jenkinstest::jenkinsscriptinst {
-  class { 'jenkinstest::java_base':
-    version => '8',
-  }
   file { '/apps/': 
     ensure => directory,
   }
