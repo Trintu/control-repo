@@ -22,7 +22,7 @@ class jenkinstest::java_base {
   }
 
   exec { 'cleanup zip':
-    command => 'rm /tmp/java/openjdk-11_linux-x64_bin.tar.gz'
+    command => '/usr/bin/rm /tmp/java/openjdk-11_linux-x64_bin.tar.gz'
   }
 #  class{ 'java':
 #    version      => $version,
