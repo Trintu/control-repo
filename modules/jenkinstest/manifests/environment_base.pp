@@ -5,8 +5,6 @@
 # @example
 #   include jenkinstest::environment_base
 class jenkinstest::environment_base (
-  String $verifyfile = lookup('jenkinstest::verify.filename'),
-  String $verifylocation = lookup('jenkinstest::verify.location'),
   String $homelocation = lookup('jenkinstest::javahome.location'),
   String $homefile = lookup('jenkinstest::javahome.filename'),
 ){
