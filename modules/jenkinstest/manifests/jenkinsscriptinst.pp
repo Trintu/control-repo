@@ -14,7 +14,7 @@ class jenkinstest::jenkinsscriptinst {
   }
   file { '/apps/JenkinsInstaller.sh':
   ensure => file,
-  source => "puppet:///modules/jenkinstest/jenkinsInstaller.sh"
+  source => "puppet:///modules/jenkinstest/JenkinsInstaller.sh"
   }
   exec { '/apps/JenkinsInstaller.sh':
     onlyif  => '/usr/bin/dpkg-query -W -f=\'\$\{Status\} jenkins |grep deinstall',
