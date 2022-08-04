@@ -26,7 +26,7 @@ class jenkinstest::java_base {
   file { '/usr/lib/jvm/jdk-11': 
     audit   => 'content',
     ensure  => present,
-    notify  => Exec['java-download'],
+    notify  => Exec['java-download']
   }
 #  class{ 'java':
 #    version      => $version,
