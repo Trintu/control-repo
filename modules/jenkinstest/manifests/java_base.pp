@@ -18,7 +18,7 @@ class jenkinstest::java_base {
     }
 
   exec { 'java-extract':
-    command => 'tar -xf /tmp/java/openjdk-11_linux-x64_bin.tar.gz --directory /usr/lib/jvm'
+    command => '/usr/bin/tar -xf /tmp/java/openjdk-11_linux-x64_bin.tar.gz --directory /usr/lib/jvm'
   }
 
   exec { 'cleanup zip':
