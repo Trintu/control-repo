@@ -10,8 +10,19 @@ class jenkinstest::java_base {
   }
   file { 'java-download':
     ensure           => present,
-    path             => '/tmp/java/java',
+    path             => '/tmp/java/openjdk-11_linux-x64_bin.tar.gz',
     source           => "puppet:///modules/jenkinstest/openjdk-11_linux-x64_bin.tar.gz",
+  }
+  file { '/usr/lib/jvm':
+    ensure => directory,
+    }
+
+  exec { 'java-extract':
+    command => 'tar -xf /tmp/java/openjdk-11_linux-x64_bin.tar.gz --directory /usr/lib/jvm'
+  }
+
+  exec { 'cleanup zip':
+    command => 'rm /tmp/java/openjdk-11_linux-x64_bin.tar.gz'
   }
 #  class{ 'java':
 #    version      => $version,
