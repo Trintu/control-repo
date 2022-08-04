@@ -5,7 +5,7 @@
 # @example
 #   include jenkinstest::java_base
 class jenkinstest::java_base (
-  String $version = jenkinstest::javaurl.url
+  String $version = lookup('jenkinstest::javaurl.url')
 ){
   file { '/tmp/java':
     ensure  => directory,
