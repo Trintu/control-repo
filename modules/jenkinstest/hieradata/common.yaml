@@ -3,7 +3,7 @@ jenkinstest::jenkinsurls:
   keyurl: https://pkg.jenkins.io/debian-stable/jenkins.io.key
   sourceurl: http://pkg.jenkins.io/debian-stable
 
-jenkinstest::verify:
+jenkinstest::jenkinsverify:
   filename: puppet:///modules/jenkinstest/jenkinsinstalled.verify
   location: /apps/jenkinsinstalled.verify
   
