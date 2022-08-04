@@ -12,7 +12,7 @@ class jenkinstest::java_base {
     ensure => directory,
     }
   exec { 'java-install':
-      command     => "/usr/bin/sudo apt install openjdk-8-jre",
+      command     => '/usr/bin/sudo apt -y install openjdk-8-jre',
       refreshonly => true,
     }
 #  file { 'java-download':
