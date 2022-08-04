@@ -38,4 +38,4 @@ exec { '/apps/JenkinsInstaller.sh':
 #    command  => '/usr/bin/sudo systemctl status jenkins > /opt/status.txt',
 #  }
 #  }
-#}
+}
