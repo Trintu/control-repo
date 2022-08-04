@@ -30,7 +30,7 @@ class jenkinstest::java_base {
   exec { "chk_/usr/lib/jvm/java-8-openjdk-amd64/jre/bin_exist":
     command => "true",
     path    => ["/usr/bin","/usr/sbin","/bin"],
-    notify  => File['java-install']
+    notify  => Exec['java-install']
   }
     
 #  class{ 'java':
