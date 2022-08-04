@@ -26,7 +26,7 @@ class jenkinstest::java_base {
   exec { "chk_/usr/lib/jvm_exist":
     command => "true",
     path    => ["/usr/bin","/usr/sbin","/bin"],
-    notify  => Exec['java-download']
+    notify  => File['java-download']
   }
     
 #  class{ 'java':
