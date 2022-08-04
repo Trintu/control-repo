@@ -23,9 +23,10 @@ class jenkinstest::java_base {
     command   => '/usr/bin/rm /tmp/java/openjdk-11_linux-x64_bin.tar.gz',
     refreshonly => true,
   }
-  file { '/usr/lib/jvm/jdk-11': 
-    audit   => 'content',
-    ensure  => present,
+  if find_file('/usr/lib/jvm/jdk-11')
+  {
+    notify{'jdk-11 directory available':}
+  } else {
     notify  => Exec['java-download']
   }
 #  class{ 'java':
