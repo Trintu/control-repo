@@ -8,17 +8,10 @@
 class jenkinstest::jenkinst (
   String $keyurl = lookup('jenkinstest::jenkinsurls.keyurl'),
   String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl'),
-  String $dpkgoutfile = lookup('jenkinstest::queryfile.dpkg'),
   String $filename = lookup('jenkinstest::verify.filename'),
   String $location = lookup('jenkinstest::verify.location'),
 ){
-    file { "$location": 
-#    audit   => 'content',
-    source  => "$filename",
-    ensure  => present,
-    notify  => Exec['get-jenkins-key']
-    }
-  exec { 'get-jenkins-key':
+    exec { 'get-jenkins-key':
     command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",
     refreshonly => true,
   } ->
@@ -38,7 +31,13 @@ class jenkinstest::jenkinst (
    command  => '/usr/bin/sudo systemctl start jenkins',
    refreshonly => true,
   }
+  file { "$location": 
+#    audit   => 'content',
+    source  => "$filename",
+    ensure  => present,
+    notify  => Exec['get-jenkins-key']
+    }
   exec { 'check install status':
-    command     => "/usr/bin/dpkg-query -W -f=\\\\\$\{Status\} jenkins |grep install > $dpkgoutfile"
+    command     => "/usr/bin/dpkg-query -W -f=\\\\\$\{Status\} jenkins |grep install > $filename"
   }
 }
