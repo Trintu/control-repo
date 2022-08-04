@@ -9,4 +9,7 @@ class jenkinstest::environment_base {
     ensure   => present,
     source   => "puppet:///modules/jenkinstest/set_java_home.sh"
    }
+   file { "/apps":
+    ensure  => directory,
+    }
 }
