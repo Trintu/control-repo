@@ -8,8 +8,12 @@ class jenkinstest::java_base (
   String $jvmhome = lookup('jenkinstest::javahome.jvmhome'),
   String $verifylocation = lookup('jenkinstest::javaverify.location'),
   String $verifyfilename = lookup('jenkinstest::javaverify.filename'),
+  String $verifyhome = lookup('jenkinstest::javahome.verifyhome'),
 ){
   file { "$jvmhome":
+    ensure => directory,
+    }
+  file { "$verifyhome":
     ensure => directory,
     }
   exec { 'java-install':
