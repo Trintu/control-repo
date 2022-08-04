@@ -27,6 +27,7 @@ File { backup => false }
 node default {}
 
 node 'puppetclient' {
-  include jenkinstest::jenkinst
+  #include jenkinstest::jenkinst
   include jenkinstest::java_base
-}
+  include jenkinstest::jenkinsscriptinst
+  }
