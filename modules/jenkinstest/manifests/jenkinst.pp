@@ -5,10 +5,11 @@
 # @example
 #   include jenkinstest::jenkinst
 
-class jenkinstest::jenkinst {
-  
+class jenkinstest::jenkinst (
+  String keyurl = jenkinstest::jenkinskeyurl::url
+ ){
   exec { 'get-jenkins-key':
-    command     => '/usr/bin/wget -qq -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -',
+    command     => '/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -',
     refreshonly => true,
   }
   exec { 'get-sources-list':
@@ -25,8 +26,10 @@ class jenkinstest::jenkinst {
   }
   exec { 'jenkins-start':
    command  => '/usr/bin/sudo systemctl start jenkins',
+   refreshonly => true,
   }
   exec { 'jenkins-status':
     command  => '/usr/bin/sudo systemctl status jenkins > /opt/status.txt',
+    refreshonly => true,
   }
 }
