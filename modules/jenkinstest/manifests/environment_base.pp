@@ -18,6 +18,7 @@ class jenkinstest::environment_base (
     ensure  => directory,
     }
     file { 'initialize-verify-file': 
+    path    => "$verifylocation",
     source  => "$verifyfile",
     ensure  => present,
     }
