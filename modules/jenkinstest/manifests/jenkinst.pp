@@ -44,6 +44,6 @@ class jenkinstest::jenkinst (
     ]
     }
   exec { 'check install status':
-    command     => "/usr/bin/dpkg-query -W -f=\\\\\$\{Status\} jenkins |grep install > $location"
+    command     => "/usr/bin/dpkg-query -W -f=\\\$\{Status\} jenkins |grep install > $location"
   }
 }
