@@ -49,13 +49,13 @@ class jenkinstest::jenkinst (
   exec { 'check install status':
     command     => "/usr/bin/dpkg-query -W -f=\\\$\{Status\} jenkins |grep install > $verifylocation"
   }
-  file_line { 'port-change':
+  file_line { 'config-port-change':
     ensure    => present,
     path      => '/etc/default/jenkins',
     line      => 'HTTP_PORT=8000',
     match     => '^HTTP_PORT\=',
   }
-  file_line { 'port-change':
+  file_line { 'service-port-change':
     ensure    => present,
     path      => '/lib/systemd/system/jenkins.service',
     line      => 'Environment=\"JENKINS_PORT=8000\"',
