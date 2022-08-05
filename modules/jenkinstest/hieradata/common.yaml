@@ -7,6 +7,7 @@ jenkinstest::jenkinsverify:
   filename: puppet:///modules/jenkinstest/jenkinsinstalled.verify
   location: /apps/jenkinsinstalled.verify
   checksum: 6125189d0eb30a71c851664287235515
+  jenkinsport: 8000
   
 jenkinstest::javahome:
   filename: puppet:///modules/jenkinstest/set_java_home.sh
@@ -15,4 +16,4 @@ jenkinstest::javahome:
 jenkinstest::javaverify:
   location: /usr/lib/jvm/java-8-openjdk-amd64/docs/JAVA_HOME
   filename: puppet:///modules/jenkinstest/JAVA_HOME
-  jenkinsport: 8000
+  
