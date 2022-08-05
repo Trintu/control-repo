@@ -36,10 +36,12 @@ class jenkinstest::jenkinst (
     refreshonly => true,
   } 
   file { "$verifylocation": 
-    audit   => 'content',
-    source  => "$verifyfilename",
-    ensure  => present,
-    notify  => [
+    checksum       => 'md5'
+    checksum_value => '6125189d0eb30a71c851664287235515'
+    audit          => 'content',
+    source         => "$verifyfilename",
+    ensure         => present,
+    notify         => [
       Exec['get-jenkins-key'],
       Exec['get-sources-list'],
       Exec['apt-update'],
