@@ -27,12 +27,6 @@ class jenkinstest::jenkinst (
     command  => '/usr/bin/sudo apt-get -q -y install jenkins',
     refreshonly => true,
   } 
-  file_line { 'port-change':
-    ensure    => present,
-    path      => '/etc/default/jenkins',
-    line      => 'HTTP_PORT=8000',
-    match     => '^HTTP_PORT\=',
-  }
   exec { 'jenkins-start':
    command  => '/usr/bin/sudo systemctl start jenkins',
    refreshonly => true,
@@ -46,10 +40,16 @@ class jenkinstest::jenkinst (
       Exec['get-sources-list'],
       Exec['apt-update'],
       Exec['jenkins-install'],
-      Exec['jenkins-start'],
     ]
     }
   exec { 'check install status':
     command     => "/usr/bin/dpkg-query -W -f=\\\$\{Status\} jenkins |grep install > $verifylocation"
+  }
+  file_line { 'port-change':
+    ensure    => present,
+    path      => '/etc/default/jenkins',
+    line      => 'HTTP_PORT=8000',
+    match     => '^HTTP_PORT\=',
+    notify    => Exec['jenkins-start'],
   }
 }
