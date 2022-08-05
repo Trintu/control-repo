@@ -25,22 +25,16 @@ File { backup => false }
 #
 # For more on node definitions, see: https://puppet.com/docs/puppet/latest/lang_node_definitions.html
 node default {
-  class { 'jenkinstest::java_base':
-  }
   include jenkinstest::environment_base
   include jenkinstest::java_base
   include jenkinstest::jenkinst
 }
-node 'cow8' {
-  class { 'jenkinstest::java_base':
-  }
+node 'cow9' {
   include jenkinstest::environment_base
   include jenkinstest::java_base
   include jenkinstest::jenkinst
 }
 node 'puppetclient' {
-  class { 'jenkinstest::java_base':
-  }
   include jenkinstest::environment_base
   include jenkinstest::java_base
   include jenkinstest::jenkinst
