@@ -29,13 +29,4 @@ node default {
   include jenkinstest::java_base
   include jenkinstest::jenkinst
 }
-node 'cow9' {
-  include jenkinstest::environment_base
-  include jenkinstest::java_base
-  include jenkinstest::jenkinst
-}
-node 'puppetclient' {
-  include jenkinstest::environment_base
-  include jenkinstest::java_base
-  include jenkinstest::jenkinst
-}
+
