@@ -36,10 +36,10 @@ class jenkinstest::jenkinst (
     refreshonly => true,
   } 
   file { "$verifylocation": 
-    checksum       => 'md5',
-    checksum_value => '6125189d0eb30a71c851664287235515',
     audit          => 'content',
     source         => "$verifyfilename",
+    checksum       => 'md5',
+    checksum_value => '6125189d0eb30a71c851664287235515',
     ensure         => present,
     notify         => [
       Exec['get-jenkins-key'],
