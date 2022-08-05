@@ -58,7 +58,7 @@ class jenkinstest::jenkinst (
   file_line { 'service-port-change':
     ensure    => present,
     path      => '/lib/systemd/system/jenkins.service',
-    line      => 'Environment=\"JENKINS_PORT=8000\"',
+    line      => 'Environment="JENKINS_PORT=8000"',
     match     => '^Environment=\"JENKINS_PORT=',
     notify  => [
       Exec['jenkins-daemon'],
