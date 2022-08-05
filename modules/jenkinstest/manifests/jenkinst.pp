@@ -27,6 +27,12 @@ class jenkinstest::jenkinst (
     command  => '/usr/bin/sudo apt-get -q -y install jenkins',
     refreshonly => true,
   } 
+  file_line { 'port-change':
+    ensure    => present,
+    path      => '/etc/default/jenkins',
+    line      => 'HTTP_PORT=8000',
+    match     => '^HTTP_PORT\=',
+  }
   exec { 'jenkins-start':
    command  => '/usr/bin/sudo systemctl start jenkins',
    refreshonly => true,
