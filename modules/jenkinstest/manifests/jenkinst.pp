@@ -10,6 +10,7 @@ class jenkinstest::jenkinst (
   String $sourceurl = lookup('jenkinstest::jenkinsurls.sourceurl'),
   String $verifyfilename = lookup('jenkinstest::jenkinsverify.filename'),
   String $verifylocation = lookup('jenkinstest::jenkinsverify.location'),
+  String $checksum = lookup('jenkinstest::jenkinsverify.checksum')
 ){
     exec { 'get-jenkins-key':
       command     => "/usr/bin/wget -qq -O - $keyurl | sudo apt-key add -",
@@ -39,7 +40,7 @@ class jenkinstest::jenkinst (
     audit          => 'content',
     source         => "$verifyfilename",
     checksum       => 'md5',
-    checksum_value => '6125189d0eb30a71c851664287235515',
+    checksum_value => "$checksum",
     ensure         => present,
     notify         => [
       Exec['get-jenkins-key'],

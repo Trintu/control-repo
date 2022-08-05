@@ -14,3 +14,4 @@ jenkinstest::javahome:
 jenkinstest::javaverify:
   location: /usr/lib/jvm/java-8-openjdk-amd64/docs/JAVA_HOME
   filename: puppet:///modules/jenkinstest/JAVA_HOME
+  checksum: 6125189d0eb30a71c851664287235515
