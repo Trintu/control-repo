@@ -59,7 +59,7 @@ class jenkinstest::jenkinst (
     ensure    => present,
     path      => '/lib/systemd/system/jenkins.service',
     line      => 'Environment="JENKINS_PORT=8000"',
-    match     => '^Environment=\"JENKINS_PORT=',
+    match     => '^Environment="JENKINS_PORT=',
     notify  => [
       Exec['jenkins-daemon'],
       Exec['jenkins-restart'],
