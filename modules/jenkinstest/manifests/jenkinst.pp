@@ -26,6 +26,14 @@ class jenkinstest::jenkinst (
   exec { 'jenkins-install':
     command  => '/usr/bin/sudo apt-get -q -y install jenkins',
     refreshonly => true,
+  }
+  exec { 'jenkins-daemon':
+    command  => '/usr/bin/sudo systemctl daemon-reload',
+    refreshonly => true,
+  }  
+  exec { 'jenkins-restart':
+    command  => '/usr/bin/sudo systemctl restart jenkins',
+    refreshonly => true,
   } 
   file { "$verifylocation": 
     audit   => 'content',
@@ -46,5 +54,15 @@ class jenkinstest::jenkinst (
     path      => '/etc/default/jenkins',
     line      => 'HTTP_PORT=8000',
     match     => '^HTTP_PORT\=',
+  }
+  file_line { 'port-change':
+    ensure    => present,
+    path      => '/lib/systemd/system/jenkins.service',
+    line      => 'Environment=\"JENKINS_PORT=8000\"',
+    match     => '^Environment=\"JENKINS_PORT=',
+    notify  => [
+      Exec['jenkins-daemon'],
+      Exec['jenkins-restart'],
+    ]
   }
 }
