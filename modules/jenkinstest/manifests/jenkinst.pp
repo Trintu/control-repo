@@ -11,7 +11,7 @@ class jenkinstest::jenkinst (
   String $verifyfilename = lookup('jenkinstest::jenkinsverify.filename'),
   String $verifylocation = lookup('jenkinstest::jenkinsverify.location'),
   String $checksum = lookup('jenkinstest::jenkinsverify.checksum'),
-  String $jenkinsport = lookup('jenkinstest::jenkinsverify.jenkinsport'),
+  Int $jenkinsport = lookup('jenkinstest::jenkinsverify.jenkinsport'),
 ){
 #get jenkins key here
     exec { 'get-jenkins-key':
