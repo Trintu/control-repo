@@ -11,6 +11,7 @@ class jenkinstest::jenkinst (
   String $verifyfilename = lookup('jenkinstest::jenkinsverify.filename'),
   String $verifylocation = lookup('jenkinstest::jenkinsverify.location'),
   String $checksum = lookup('jenkinstest::jenkinsverify.checksum'),
+  String $jenkinsport = lookup('jenkinstest::jenkinsverify.jenkinsport'),
 ){
 #get jenkins key here
     exec { 'get-jenkins-key':
@@ -72,7 +73,7 @@ class jenkinstest::jenkinst (
   file_line { 'config-port-change':
     ensure    => present,
     path      => '/etc/default/jenkins',
-    line      => 'HTTP_PORT=8000',
+    line      => "HTTP_PORT=$jenkinsport",
     match     => '^HTTP_PORT\=',
   }
 #port change that actually mattered to the service, if it gets
@@ -81,7 +82,7 @@ class jenkinstest::jenkinst (
   file_line { 'service-port-change':
     ensure    => present,
     path      => '/lib/systemd/system/jenkins.service',
-    line      => 'Environment="JENKINS_PORT=8000"',
+    line      => "Environment=\"JENKINS_PORT=$jenkinsport\"",
     match     => '^Environment="JENKINS_PORT=',
     notify  => [
       Exec['jenkins-daemon'],

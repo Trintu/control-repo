@@ -15,3 +15,4 @@ jenkinstest::javahome:
 jenkinstest::javaverify:
   location: /usr/lib/jvm/java-8-openjdk-amd64/docs/JAVA_HOME
   filename: puppet:///modules/jenkinstest/JAVA_HOME
+  jenkinsport: 8000
